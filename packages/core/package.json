@@ -22,5 +22,8 @@
   "dependencies": {
     "@zheye-cli-dev/utils": "^1.0.2"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "gitHead": "ebcfdd66a61be3448d30c47a11656f038b9439f3"
 }
