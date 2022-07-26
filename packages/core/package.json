@@ -1,0 +1,22 @@
+{
+  "name": "@zheye-cli-dev/core",
+  "version": "1.0.0",
+  "description": "zheye-cli-dev core",
+  "author": "hiycc <hiycc@outlook.com>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "lib/core.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "test": "echo \"Error: run tests from root\""
+  },
+  "dependencies": {
+    "@zheye-cli-dev/utils": "^1.0.0"
+  }
+}
