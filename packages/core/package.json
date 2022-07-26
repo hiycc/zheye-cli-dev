@@ -6,6 +6,9 @@
   "homepage": "",
   "license": "ISC",
   "main": "lib/core.js",
+  "bin": {
+    "zheye-cli-dev": "bin/index.js"
+  },
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -19,5 +22,5 @@
   "dependencies": {
     "@zheye-cli-dev/utils": "^1.0.2"
   },
-  "gitHead": "41c122722b63f63565a068992d22e2859c8f4fd9"
+  "gitHead": "ebcfdd66a61be3448d30c47a11656f038b9439f3"
 }
