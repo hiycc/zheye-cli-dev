@@ -1,6 +1,6 @@
 {
   "name": "@zheye-cli-dev/core",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "zheye-cli-dev core",
   "author": "hiycc <hiycc@outlook.com>",
   "homepage": "",
@@ -17,7 +17,7 @@
     "test": "echo \"Error: run tests from root\""
   },
   "dependencies": {
-    "@zheye-cli-dev/utils": "^1.0.1"
+    "@zheye-cli-dev/utils": "^1.0.2"
   },
   "gitHead": "41c122722b63f63565a068992d22e2859c8f4fd9"
 }
