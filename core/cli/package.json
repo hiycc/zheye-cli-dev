@@ -5,7 +5,7 @@
   "author": "hiycc <hiycc@outlook.com>",
   "homepage": "",
   "license": "ISC",
-  "main": "lib/core.js",
+  "main": "lib/index.js",
   "bin": {
     "zheye-cli-dev": "bin/index.js"
   },
@@ -20,10 +20,22 @@
     "test": "echo \"Error: run tests from root\""
   },
   "dependencies": {
-    "@zheye-cli-dev/utils": "^1.0.3"
+    "@zheye-cli-dev/get-npm-info": "^1.0.3",
+    "@zheye-cli-dev/log": "^1.0.0",
+    "@zheye-cli-dev/utils": "^1.0.0",
+    "colors": "^1.4.0",
+    "dotenv": "^16.0.1",
+    "minimist": "^1.2.6",
+    "path-exists": "4.0.0",
+    "root-check": "1.0.0",
+    "semver": "^7.3.7",
+    "user-home": "^3.0.0"
   },
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "ebcfdd66a61be3448d30c47a11656f038b9439f3"
+  "gitHead": "ebcfdd66a61be3448d30c47a11656f038b9439f3",
+  "devDependencies": {
+    "import-local": "^3.1.0"
+  }
 }
