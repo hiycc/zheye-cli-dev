@@ -1,13 +1,21 @@
-0 silly argv {
-0 silly argv   _: [ 'add' ],
-0 silly argv   globs: [ 'core/cli' ],
-0 silly argv   lernaVersion: '5.2.0',
-0 silly argv   '$0': 'lerna',
-0 silly argv   pkg: 'path-exist'
-0 silly argv }
-1 notice cli v5.2.0
-2 verbose rootPath /Users/luxi/Documents/gitstorge.nosync/zheye-cli-dev
-3 error HttpErrorGeneral: 404 Not Found - GET https://registry.npmjs.org/path-exist - Not found
-3 error     at /Users/luxi/Documents/gitstorge.nosync/zheye-cli-dev/node_modules/pacote/node_modules/npm-registry-fetch/lib/check-response.js:93:15
-3 error     at processTicksAndRejections (node:internal/process/task_queues:96:5)
-3 error     at async RegistryFetcher.packument (/Users/luxi/Documents/gitstorge.nosync/zheye-cli-dev/node_modules/pacote/lib/registry.js:92:19)
+0 silly argv { _: [ 'clean' ], lernaVersion: '5.3.0', '$0': 'lerna' }
+1 notice cli v5.3.0
+2 verbose rootPath /home/coder/gitstorage/zheye-cli-dev
+3 info Removing the following directories:
+4 info clean core/cli/node_modules
+4 info clean utils/get-npm-info/node_modules
+4 info clean utils/log/node_modules
+4 info clean utils/utils/node_modules
+5 info clean removing /home/coder/gitstorage/zheye-cli-dev/core/cli/node_modules
+6 silly rimrafDir /home/coder/gitstorage/zheye-cli-dev/core/cli/node_modules
+7 info clean removing /home/coder/gitstorage/zheye-cli-dev/utils/get-npm-info/node_modules
+8 silly rimrafDir /home/coder/gitstorage/zheye-cli-dev/utils/get-npm-info/node_modules
+9 info clean removing /home/coder/gitstorage/zheye-cli-dev/utils/log/node_modules
+10 silly rimrafDir /home/coder/gitstorage/zheye-cli-dev/utils/log/node_modules
+11 info clean removing /home/coder/gitstorage/zheye-cli-dev/utils/utils/node_modules
+12 silly rimrafDir /home/coder/gitstorage/zheye-cli-dev/utils/utils/node_modules
+13 verbose rimrafDir removed /home/coder/gitstorage/zheye-cli-dev/utils/get-npm-info/node_modules
+14 error Error: Command failed with exit code 1: /home/coder/download/nodejs/bin/node /home/coder/download/nodejs/lib/node_modules/lerna/node_modules/rimraf/bin.js --no-glob /home/coder/gitstorage/zheye-cli-dev/core/cli/node_modules/
+14 error     at makeError (/home/coder/download/nodejs/lib/node_modules/lerna/node_modules/execa/lib/error.js:60:11)
+14 error     at handlePromise (/home/coder/download/nodejs/lib/node_modules/lerna/node_modules/execa/index.js:118:26)
+14 error     at processTicksAndRejections (node:internal/process/task_queues:96:5)
