@@ -5,6 +5,7 @@ const colors = require('colors/safe')
 const constant = require('./constant')
 const commander = require('commander')
 const pkg = require('../package.json')
+const init = require('@zheye-cli-dev/init')
 const log = require('@zheye-cli-dev/log')
 let argv
 
@@ -34,11 +35,14 @@ function registryCommand() {
     .option('-d, --debug', '是否开启调试模式', false)
 
   program
+    .command('init')
+    .option('-f, --force', '是否强制初始化项目')
+    .action(init)
 
   // 测试安装指令
   program
     .command('install')
-    .action(() => {
+    .action(() => {e
       log.info(' run install command')
     })
 
