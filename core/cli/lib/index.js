@@ -1,30 +1,40 @@
 module.exports = core;
 
+const path = require('path')
 const semver = require('semver')
 const colors = require('colors/safe')
 const constant = require('./constant')
 const commander = require('commander')
 const pkg = require('../package.json')
 const init = require('@zheye-cli-dev/init')
-const log = require('@zheye-cli-dev/log')
+const exec = require('@zheye-cli-dev/exec')
+const log = require('@zheye-cli-dev/log');
+const pathExists = require('path-exists');
 let argv
+
+const userHome = process.env.HOME || process.env.USERPROFILE
 
 const { program } = commander
 
 async function core() {
   try {
-    checkVersion()
-    checkNodeVersion()
-    checkRoot()
-    checkUserHome()
-    // checkInputArgs()
-    // log.verbose('debug', 'test debug log')
-    checkEnv()
-    checkGlobalUpdate()
+    await prepare()
     registryCommand()
   } catch (e) {
     log.error('cli', colors.red(e.message))
+    if (program.opts()['debug']) {
+      console.log(e)
+    }
   }
+}
+
+async function prepare() {
+  checkPkgVersion()
+  checkNodeVersion()
+  checkRoot()
+  checkUserHome()
+  checkEnv()
+  checkGlobalUpdate()
 }
 
 function registryCommand() {
@@ -33,17 +43,24 @@ function registryCommand() {
     .usage('<command> [options]')
     .version(pkg.version)
     .option('-d, --debug', '是否开启调试模式', false)
+    .option('-tp, --targetPath <targetPath>', '是否指定本地调试文件路径', '')
 
   program
-    .command('init')
+    .command('init [projectName]')
     .option('-f, --force', '是否强制初始化项目')
-    .action(init)
+    .action(exec)
 
   // 测试安装指令
   program
     .command('install')
     .action(() => {e
       log.info(' run install command')
+    })
+
+  // 监听地址
+  program
+    .on('option:targetPath', () => {
+      process.env.CLI_TARGET_PATH = program.opts()['targetPath']
     })
 
   //  监听debug模式
@@ -72,6 +89,18 @@ function registryCommand() {
 
 }
 
+function createDefaultConfig () {
+  const cliConfig = {
+    home: userHome
+  }
+  if (process.env.CLI_HOME) {
+    cliConfig['cliHome'] = path.join(userHome, process.env.CLI_HOME)
+  } else {
+    cliConfig['cliHome'] = path.join(userHome, constant.DEFAULT_CLI_HOME)
+  }
+  process.env.CLI_HOME_PATH = cliConfig.cliHome
+}
+
 async function checkGlobalUpdate() {
   //  1.获取最新版本号和模块名
   const currentVersion = pkg.version
@@ -89,23 +118,16 @@ async function checkGlobalUpdate() {
 }
 
 function checkEnv() {
-  require('dotenv').config()
-  // console.log(process.env)
-}
-
-function checkInputArgs() {
-  argv = require('minimist')(process.argv.slice(2))
-  checkArgs()
-}
-
-function checkArgs() {
-  if (argv.debug) {
-    process.env.LOG_LEVEL = 'verbose'
-  } else {
-    process.env.LOG_LEVEL = 'info'
+  const dotenv = require('dotenv') 
+  const dotenvPath = path.resolve(userHome, '.env')
+  if (pathExists(dotenvPath)) {
+    dotenv.config({
+      path: dotenvPath
+    })
   }
-  log.level = process.env.LOG_LEVEL
+  createDefaultConfig()
 }
+
 
 function checkUserHome() {
   const home = require('os').homedir
@@ -132,7 +154,7 @@ function checkNodeVersion() {
   }
 }
 
-function checkVersion() {
+function checkPkgVersion() {
   log.info('cli', pkg.version)
 }
 

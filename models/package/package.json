@@ -1,0 +1,38 @@
+{
+  "name": "@zheye-cli-dev/package",
+  "version": "1.0.0",
+  "description": "zheye-cli-dev npm module",
+  "author": "hiycc <hiycc@outlook.com>",
+  "homepage": "https://github.com/hiycc/zheye-cli-dev#readme",
+  "license": "ISC",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hiycc/zheye-cli-dev.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/hiycc/zheye-cli-dev/issues"
+  },
+  "dependencies": {
+    "@zheye-cli-dev/format-path": "file:../../utils/format-path",
+    "@zheye-cli-dev/utils": "file:../../utils/utils",
+    "@zheye-cli-dev/get-npm-info": "file:../../utils/get-npm-info"
+  },
+  "devDependencies": {
+    "npminstall": "^6.5.0",
+    "pkg-dir": "5.0.0"
+  }
+}
