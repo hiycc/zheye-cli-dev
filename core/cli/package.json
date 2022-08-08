@@ -23,7 +23,7 @@
     "@zheye-cli-dev/get-npm-info": "^1.0.3",
     "@zheye-cli-dev/log": "^1.0.0",
     "@zheye-cli-dev/utils": "^1.0.0",
-    "@zheye-cli-dev/init": "^1.0.0",
+    "@zheye-cli-dev/init": "file:../../commands/init",
     "colors": "^1.4.0",
     "commander": "^9.4.0",
     "dotenv": "^16.0.1",
