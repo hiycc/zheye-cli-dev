@@ -28,11 +28,13 @@
   },
   "dependencies": {
     "@zheye-cli-dev/format-path": "file:../../utils/format-path",
-    "@zheye-cli-dev/utils": "file:../../utils/utils",
-    "@zheye-cli-dev/get-npm-info": "file:../../utils/get-npm-info"
+    "@zheye-cli-dev/get-npm-info": "file:../../utils/get-npm-info",
+    "@zheye-cli-dev/utils": "file:../../utils/utils"
   },
   "devDependencies": {
+    "fs-extra": "^10.1.0",
     "npminstall": "^6.5.0",
+    "path-exists": "4.0.0",
     "pkg-dir": "5.0.0"
   }
 }

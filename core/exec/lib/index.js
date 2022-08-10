@@ -21,8 +21,7 @@ async function exec() {
   const cmdObj = arguments[arguments.length - 1]
   const cmdName = cmdObj.name()
   const packageName = SETTINGS[cmdName]
-  const packageVersion = 'latest'
-  console.log(packageName, packageVersion)
+  const packageVersion = '1.1.0'
   if(!targetPath) {
     targetPath = path.resolve(homePath, CACHE_DIR)
     storeDir = path.resolve(targetPath, 'node_modules')
@@ -34,8 +33,9 @@ async function exec() {
       packageName,
       packageVersion
     })
-    if (pkg.exists()) {
+    if (await pkg.exists()) {
       //  更新package
+      await pkg.update()
     } else {
       //  安装package
       await pkg.install()
@@ -48,9 +48,12 @@ async function exec() {
       packageVersion
     })
   }
+  await pkg.exists()
   const rootFile = pkg.getRootFilePath()
   // console.log('arguments', arguments)
-  require(rootFile).apply(null, arguments)
+  if (rootFile) {
+    require(rootFile).apply(null, arguments)
+  }
 }
 
 module.exports = exec;

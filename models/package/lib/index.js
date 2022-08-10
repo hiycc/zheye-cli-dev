@@ -1,10 +1,12 @@
 'use strict';
 const path = require('path')
 const pkgDir = require('pkg-dir').sync
+const pathExists = require('path-exists').sync
+const fse = require('fs-extra')
 const npminstall = require('npminstall')
 const { isObject } = require('@zheye-cli-dev/utils')
 const formatPath = require('@zheye-cli-dev/format-path')
-const { getDefaultRegistry } = require('@zheye-cli-dev/get-npm-info')
+const { getDefaultRegistry, getNpmLatestVersion } = require('@zheye-cli-dev/get-npm-info')
 
 class Package {
   constructor(options) {
@@ -16,24 +18,56 @@ class Package {
     //  package路径
     this.targetPath = options.targetPath
     //  缓存Package的路径
-    this.storePath = options.storeDir
+    this.storeDir = options.storeDir
     //  package的name
     this.packageName = options.packageName
     //  packageVersion
     this.packageVersion = options.packageVersion
+    //  缓存路径包前缀
+    this.cacheFilePathPrefix = options.packageName.replace('/','_')
+  }
+
+  async prepare () {
+    //  将latest转换成具体的version
+
+    //  先判断字符串再判断文件夹是否存在
+    if (this.storeDir && !pathExists(this.storeDir)) {
+      fse.mkdirpSync(this.storeDir)
+    }
+
+    if (this.packageVersion === 'latest') {
+      this.packageVersion = await getNpmLatestVersion(this.packageName)
+    }
+    // _@imooc-cli_init@1.1.2@@imooc-cli/
+    // @imooc-cli_init 1.1.2
+  }
+
+  get cacheFilePath() {
+    return path.resolve(this.storeDir, `_${this.cacheFilePathPrefix}@${this.packageVersion}@${this.packageName}`)
+  }
+
+  getSpecificCacheFilePath(packageVersion) {
+    return path.resolve(this.storeDir, `_${this.cacheFilePathPrefix}@${packageVersion}@${this.packageName}`)
   }
 
   //  判断当前Package是否存在
-  exists() {
-
+  async exists() {
+     // 判断缓存路径是否存在
+    if(this.storeDir) {
+      await this.prepare()
+      console.log(this.cacheFilePath)
+      return pathExists(this.cacheFilePath)
+    } else {
+      return pathExists(this.targetPath)
+    }
   }
 
   //  安装Package
-  install() {
-    console.log(this.packageName, this.packageVersion)
+  async install() {
+    await this.prepare()
     return npminstall({
       root: this.targetPath,
-      storeDir: this.storePath,
+      storeDir: this.storeDir,
       registry: getDefaultRegistry(),
       pkgs: [
         { name: this.packageName, version: this.packageVersion }
@@ -43,8 +77,24 @@ class Package {
   }
 
   //  更新Package
-  update() {
-
+  async update() {
+    await this.prepare()
+    //1.获取最新的npm模块版本号
+    const latestPackageVersion = await getNpmLatestVersion(this.packageName)
+    //2.查询最新版本号路径是否存在
+    const latestFilePath = this.getSpecificCacheFilePath(latestPackageVersion)
+    if(!pathExists(latestFilePath)) {
+      //3.如果不存在则直接安装最新版本
+      await npminstall({
+        root: this.targetPath,
+        storeDir: this.storeDir,
+        registry: getDefaultRegistry(),
+        pkgs: [
+          { name: this.packageName, version: latestPackageVersion}
+        ]
+      })
+      this.packageVersion = latestPackageVersion
+    }
   }
   //  获取入口文件的路径
   getRootFilePath() {
