@@ -30,7 +30,6 @@ async function getNpmVersions(npmName, registry) {
 
 function getNpmInfo(npmName, registry) {
     // TODO
-    console.log(npmName)
     if (!npmName) {
         return null
     }

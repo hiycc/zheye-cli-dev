@@ -55,7 +55,6 @@ class Package {
      // 判断缓存路径是否存在
     if(this.storeDir) {
       await this.prepare()
-      console.log(this.cacheFilePath)
       return pathExists(this.cacheFilePath)
     } else {
       return pathExists(this.targetPath)
@@ -98,20 +97,29 @@ class Package {
   }
   //  获取入口文件的路径
   getRootFilePath() {
-    // 1.获取package.json的路径
-    const dir = pkgDir(this.targetPath)
-    // console.log(dir)
-    if (dir) {
-      // 2.读取package.json
-      const pkgFile = require(path.resolve(dir, 'package.json'))
-      // console.log(pkgFile)
-      // 3.寻找main/lib
-      if (pkgFile && pkgFile.main) {
-        // 4.路径的兼容性处理（macOS/Windows）
-        return formatPath(path.resolve(dir, pkgFile.main))
+    function _getRootFile(targetPath) {
+      // 1.获取package.json的路径
+      const dir = pkgDir(targetPath)
+      // console.log(dir)
+      if (dir) {
+        // 2.读取package.json
+        const pkgFile = require(path.resolve(dir, 'package.json'))
+        // console.log(pkgFile)
+        // 3.寻找main/lib
+        if (pkgFile && pkgFile.main) {
+          // 4.路径的兼容性处理（macOS/Windows）
+          return formatPath(path.resolve(dir, pkgFile.main))
+        }
       }
+      return null
     }
-    return null
+    if (this.storeDir) {
+      // 使用缓存
+      return _getRootFile(this.cacheFilePath)
+    } else {
+      // 不使用缓存
+      return _getRootFile(this.targetPath)
+    }
   }
 }
 
