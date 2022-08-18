@@ -6,7 +6,6 @@ const colors = require('colors/safe')
 const constant = require('./constant')
 const commander = require('commander')
 const pkg = require('../package.json')
-const init = require('@zheye-cli-dev/init')
 const exec = require('@zheye-cli-dev/exec')
 const log = require('@zheye-cli-dev/log');
 const pathExists = require('path-exists');
@@ -30,7 +29,6 @@ async function core() {
 
 async function prepare() {
   checkPkgVersion()
-  checkNodeVersion()
   checkRoot()
   checkUserHome()
   checkEnv()
@@ -145,14 +143,6 @@ function checkRoot() {
 
 }
 
-function checkNodeVersion() {
-  //  第一步，获取当前node版本
-  const currentNodeVersion = process.version
-  //  第二步，对比最低版本
-  if (!semver.gt(currentNodeVersion, constant.LOW_NODE_VERSION)) {
-    throw Error(`zheye-cli需要安装v${constant.LOW_NODE_VERSION}以上版本的Node.js`)
-  }
-}
 
 function checkPkgVersion() {
   log.info('cli', pkg.version)

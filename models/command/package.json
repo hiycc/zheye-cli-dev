@@ -25,5 +25,9 @@
   },
   "bugs": {
     "url": "https://github.com/hiycc/zheye-cli-dev/issues"
+  },
+  "devDependencies": {
+    "colors": "^1.4.0",
+    "semver": "^7.3.7"
   }
 }
