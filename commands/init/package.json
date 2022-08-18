@@ -27,6 +27,7 @@
     "url": "https://github.com/hiycc/zheye-cli-dev/issues"
   },
   "dependencies": {
-    "@zheye-cli-dev/command": "file:../../models/command"
+    "@zheye-cli-dev/command": "file:../../models/command",
+    "@zheye-cli-dev/log": "file:../../utils/log"
   }
 }
