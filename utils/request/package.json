@@ -1,6 +1,6 @@
 {
-  "name": "@zheye-cli-dev/init",
-  "version": "1.0.3",
+  "name": "@zheye-cli-dev/request",
+  "version": "1.0.0",
   "description": "> TODO: description",
   "author": "hiycc <hiycc@outlook.com>",
   "homepage": "https://github.com/hiycc/zheye-cli-dev#readme",
@@ -27,17 +27,6 @@
     "url": "https://github.com/hiycc/zheye-cli-dev/issues"
   },
   "dependencies": {
-    "@zheye-cli-dev/command": "file:../../models/command",
-    "@zheye-cli-dev/log": "file:../../utils/log",
-    "@zheye-cli-dev/package": "file:../../models/package",
-    "@zheye-cli-dev/request": "file:../../utils/request",
-    "@zheye-cli-dev/utils": "file:../../utils/utils",
-    "axios": "^0.27.2",
-    "user-home": "^3.0.0"
-  },
-  "devDependencies": {
-    "fs-extra": "^10.1.0",
-    "inquirer": "^8.2.4",
-    "semver": "^7.3.7"
+    "axios": "^0.27.2"
   }
 }

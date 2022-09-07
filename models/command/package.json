@@ -27,9 +27,12 @@
     "url": "https://github.com/hiycc/zheye-cli-dev/issues"
   },
   "devDependencies": {
+    "@zheye-cli-dev/log": "file:../../utils/log",
+    "@zheye-cli-dev/utils": "file:../../utils/utils",
     "colors": "^1.4.0",
-    "semver": "^7.3.7",
-    "@zheye-cli-dev/log":"file:../../utils/log",
-    "@zheye-cli-dev/utils":"file:../../utils/utils"
+    "semver": "^7.3.7"
+  },
+  "dependencies": {
+    "axios": "^0.27.2"
   }
 }

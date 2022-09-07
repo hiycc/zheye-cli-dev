@@ -29,7 +29,8 @@
   "dependencies": {
     "@zheye-cli-dev/format-path": "file:../../utils/format-path",
     "@zheye-cli-dev/get-npm-info": "file:../../utils/get-npm-info",
-    "@zheye-cli-dev/utils": "file:../../utils/utils"
+    "@zheye-cli-dev/utils": "file:../../utils/utils",
+    "axios": "^0.27.2"
   },
   "devDependencies": {
     "fs-extra": "^10.1.0",

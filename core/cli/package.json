@@ -20,11 +20,12 @@
     "test": "echo \"Error: run tests from root\""
   },
   "dependencies": {
+    "@zheye-cli-dev/exec": "file:../exec",
     "@zheye-cli-dev/get-npm-info": "file:../../utils/get-npm-info",
+    "@zheye-cli-dev/init": "file:../../commands/init",
     "@zheye-cli-dev/log": "file:../../utils/log",
     "@zheye-cli-dev/utils": "file:../../utils/utils",
-    "@zheye-cli-dev/init": "file:../../commands/init",
-    "@zheye-cli-dev/exec": "file:../exec",
+    "axios": "^0.27.2",
     "colors": "^1.4.0",
     "commander": "^9.4.0",
     "dotenv": "^16.0.1",

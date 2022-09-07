@@ -6,7 +6,7 @@ const Package = require('@zheye-cli-dev/package')
 const path = require('path')
 let pkg
 const SETTINGS = {
-  init: '@imooc-cli/init'
+  init: '@zheye-cli/init'
 }
 
 const CACHE_DIR = 'dependencies'
@@ -78,7 +78,6 @@ async function exec() {
         process.exit(1)
       })
       child.on('exit', e => {
-        log.verbose('命令执行成功' + e)
         process.exit(e)
       })
     } catch (e) {
